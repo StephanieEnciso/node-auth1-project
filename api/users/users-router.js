@@ -7,12 +7,12 @@ function verification(req, res, next) {
         next()
     } else {
         res.status(401).json({
-            message: 'You are not authorized.'
+            message: 'You shall not pass!.'
         })
     }
 }
 
-router.get('/', (req, res) => {
+router.get('/', verification, (req, res) => {
     User.find()
       .then(users => {
           res.status(200).json(users)
